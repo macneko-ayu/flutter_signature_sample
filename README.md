@@ -1,16 +1,20 @@
 # flutter_signature_sample
 
-A new Flutter project.
+[signature](https://pub.dev/packages/signature) パッケージを利用した、Flutter で署名機能を実装するサンプルアプリです。
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+```zsh
+fvm install
+fvm flutter pub get
+fvm flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+## 動作
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| プラットホーム | 動作 |
+| --- | --- |
+| iPhone | <video src="https://github.com/user-attachments/assets/9190a043-9880-4cdb-9670-c7ef9775f6de"> |
+| Android | <video src="https://github.com/user-attachments/assets/a475c330-2929-45de-a62c-5a53292ff09a"> |
+| macOS |  <video src="https://github.com/user-attachments/assets/ac890cfe-6f12-448c-bd24-12afe3707003"> |
+| Chrome | <video src="https://github.com/user-attachments/assets/2bf87a33-b1e4-4199-ab19-c44da27a9527"> |
