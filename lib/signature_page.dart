@@ -12,7 +12,6 @@ class SignaturePage extends StatefulWidget {
 class _SignaturePageState extends State<SignaturePage>
     with WidgetsBindingObserver {
   late final SignatureController _controller;
-  bool _hasSignature = false;
   ui.Image? _signatureImage;
 
   static const double _buttonAreaHeight = 44.0;
@@ -30,7 +29,8 @@ class _SignaturePageState extends State<SignaturePage>
 
     _controller.onDrawEnd = () {
       setState(() {
-        _hasSignature = _controller.isNotEmpty;
+        // _controller.onDrawEnd の中で setState を呼ばないと、
+        //_controller.isNotEmpty が false から更新されない
       });
     };
   }
@@ -58,7 +58,6 @@ class _SignaturePageState extends State<SignaturePage>
   void _handleClear() {
     _controller.clear();
     setState(() {
-      _hasSignature = false;
       _signatureImage = null;
     });
   }
@@ -114,7 +113,7 @@ class _SignaturePageState extends State<SignaturePage>
                           onPressed: _handleClear,
                           icon: const Icon(Icons.clear),
                         ),
-                        if (_hasSignature)
+                        if (_controller.isNotEmpty)
                           ElevatedButton(
                             onPressed: _handleComplete,
                             child: const Text('完了'),
@@ -153,4 +152,4 @@ class _SignaturePageState extends State<SignaturePage>
       ),
     );
   }
-} 
+}
