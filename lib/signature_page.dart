@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:signature/signature.dart';
@@ -10,7 +9,8 @@ class SignaturePage extends StatefulWidget {
   State<SignaturePage> createState() => _SignaturePageState();
 }
 
-class _SignaturePageState extends State<SignaturePage> with WidgetsBindingObserver {
+class _SignaturePageState extends State<SignaturePage>
+    with WidgetsBindingObserver {
   late final SignatureController _controller;
   bool _hasSignature = false;
   ui.Image? _signatureImage;
@@ -74,7 +74,10 @@ class _SignaturePageState extends State<SignaturePage> with WidgetsBindingObserv
           padding: const EdgeInsets.all(_contentPadding),
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final contentHeight = (constraints.maxHeight - _buttonAreaHeight - _buttonSpacing * 2) / 2;
+              final contentHeight = (constraints.maxHeight -
+                      _buttonAreaHeight -
+                      _buttonSpacing * 2) /
+                  2;
               return Column(
                 children: [
                   SizedBox(
