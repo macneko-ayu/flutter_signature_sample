@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:signature/signature.dart';
@@ -10,9 +9,9 @@ class SignaturePage extends StatefulWidget {
   State<SignaturePage> createState() => _SignaturePageState();
 }
 
-class _SignaturePageState extends State<SignaturePage> with WidgetsBindingObserver {
+class _SignaturePageState extends State<SignaturePage>
+    with WidgetsBindingObserver {
   late final SignatureController _controller;
-  bool _hasSignature = false;
   ui.Image? _signatureImage;
 
   static const double _buttonAreaHeight = 44.0;
@@ -30,7 +29,8 @@ class _SignaturePageState extends State<SignaturePage> with WidgetsBindingObserv
 
     _controller.onDrawEnd = () {
       setState(() {
-        _hasSignature = _controller.isNotEmpty;
+        // _controller.onDrawEnd の中で setState を呼ばないと、
+        //_controller.isNotEmpty が false から更新されない
       });
     };
   }
@@ -58,7 +58,6 @@ class _SignaturePageState extends State<SignaturePage> with WidgetsBindingObserv
   void _handleClear() {
     _controller.clear();
     setState(() {
-      _hasSignature = false;
       _signatureImage = null;
     });
   }
@@ -74,7 +73,10 @@ class _SignaturePageState extends State<SignaturePage> with WidgetsBindingObserv
           padding: const EdgeInsets.all(_contentPadding),
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final contentHeight = (constraints.maxHeight - _buttonAreaHeight - _buttonSpacing * 2) / 2;
+              final contentHeight = (constraints.maxHeight -
+                      _buttonAreaHeight -
+                      _buttonSpacing * 2) /
+                  2;
               return Column(
                 children: [
                   SizedBox(
@@ -111,7 +113,7 @@ class _SignaturePageState extends State<SignaturePage> with WidgetsBindingObserv
                           onPressed: _handleClear,
                           icon: const Icon(Icons.clear),
                         ),
-                        if (_hasSignature)
+                        if (_controller.isNotEmpty)
                           ElevatedButton(
                             onPressed: _handleComplete,
                             child: const Text('完了'),
@@ -150,4 +152,4 @@ class _SignaturePageState extends State<SignaturePage> with WidgetsBindingObserv
       ),
     );
   }
-} 
+}
